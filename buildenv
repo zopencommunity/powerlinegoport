@@ -1,0 +1,57 @@
+export ZOPEN_GIT_URL="https://github.com/justjanne/powerline-go.git"
+export ZOPEN_GIT_DEPS="comp_go"
+export ZOPEN_TYPE="GIT"
+export ZOPEN_RUNTIME_DEPS="bash"
+# export ZOPEN_COMP=GO
+
+export ZOPEN_CONFIGURE="skip"
+export ZOPEN_MAKE="go"
+export ZOPEN_MAKE_OPTS="build"
+export ZOPEN_MAKE_MINIMAL="yes"
+export ZOPEN_CHECK="skip"
+export ZOPEN_INSTALL="zopen_install"
+
+zopen_init()
+{
+  # Go installs binaries, so create the bin dir as well
+  export GOBIN=$ZOPEN_INSTALL_DIR/bin
+  mkdir -p \$ZOPEN_INSTALL_DIR/bin
+}
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to gauge build health
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+}
+
+zopen_test()
+{
+  go test
+}
+
+zopen_install()
+{
+  go install
+}
+
+zopen_append_to_env()
+{
+  # echo envars outside of PATH, MANPATH, LIBPATH
+}
+
+zopen_append_to_setup()
+{
+  # echo commands that will run when installing via setup.sh
+}
+
+zopen_get_version()
+{
+  # powerline-go doesn't have a version identifier, so hardcode
+  echo "1.23"
+}
