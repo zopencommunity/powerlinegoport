@@ -8,7 +8,8 @@ export ZOPEN_CONFIGURE="skip"
 export ZOPEN_MAKE="go"
 export ZOPEN_MAKE_OPTS="build"
 export ZOPEN_MAKE_MINIMAL="yes"
-export ZOPEN_CHECK="skip"
+export ZOPEN_CHECK="go"
+export ZOPEN_CHECK_OPTS="test"
 export ZOPEN_INSTALL="zopen_install"
 
 zopen_init()
@@ -30,11 +31,6 @@ zopen_check_results()
   echo "expectedFailures:0"
 }
 
-zopen_test()
-{
-  go test
-}
-
 zopen_install()
 {
   go install
@@ -53,5 +49,5 @@ zopen_append_to_setup()
 zopen_get_version()
 {
   # powerline-go doesn't have a version identifier, so hardcode
-  echo "1.23"
+  echo "1.24"
 }
