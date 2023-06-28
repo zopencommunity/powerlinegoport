@@ -1,0 +1,29 @@
+From dc30ce0161c5d4b83339fc99bf1f679274dafc52 Mon Sep 17 00:00:00 2001
+From: eblack <302387+elebertus@users.noreply.github.com>
+Date: Tue, 27 Jun 2023 12:52:03 -0700
+Subject: [PATCH] fixing pyvenv.cfg parsing
+
+---
+ segment-virtualenv.go | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/segment-virtualenv.go b/segment-virtualenv.go
+index dd21b38..edc5973 100644
+--- a/segment-virtualenv.go
++++ b/segment-virtualenv.go
+@@ -16,7 +16,14 @@ func segmentVirtualEnv(p *powerline) []pwl.Segment {
+ 		if env != "" {
+ 			cfg, err := ini.Load(path.Join(env, "pyvenv.cfg"))
+ 			if err == nil {
+-				env = cfg.Section("").Key("prompt").String()
++				// python >= 3.6 the venv module will not insert a prompt
++				// key unless the `--prompt` flag is passed to the module
++				// or if calling with the prompt arg EnvBuilder
++				// otherwise env evaluates to an empty string, per return
++				// of ini.File.Section.Key
++				if pyEnv := cfg.Section("").Key("prompt").String(); len(pyEnv) > 0 {
++					env = pyEnv
++				}
+ 			}
+ 		}
+ 	}
