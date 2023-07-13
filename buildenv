@@ -1,39 +1,28 @@
 export ZOPEN_GIT_URL="https://github.com/justjanne/powerline-go.git"
 export ZOPEN_GIT_DEPS="comp_go"
 export ZOPEN_TYPE="GIT"
-export ZOPEN_RUNTIME_DEPS="bash"
+export ZOPEN_COMP="GO"
+export ZOPEN_NAME="powerlingo"
 
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_MAKE="go"
-export ZOPEN_MAKE_OPTS="build -o $HOME/go/bin/powerline-go"
-export ZOPEN_MAKE_MINIMAL="yes"
-export ZOPEN_CHECK="go"
-export ZOPEN_CHECK_OPTS="test"
-export ZOPEN_CHECK_MINIMAL="yes"
-export ZOPEN_INSTALL="skip"
+export ZOPEN_MAKE_OPTS="build"
+export ZOPEN_MAKE_MINIMAL=1
+export ZOPEN_INSTALL="zopen_install"
+export ZOPEN_CHECK="skip"
+export ZOPEN_CLEAN="zopen_clean"
 
-# For Go projects, ZOPEN_MAKE_MINIMAL="yes", ZOPEN_CHECK_MINIMAL="yes", and ZOPEN_INSTALL="skip" are required, so that zopen-build doesn't insert C/C++ compiler options & flags. This will be required until zopen-build gets ZOPEN_COMP=GO and related plumbing.
-
-zopen_check_results()
+zopen_init()
 {
-  dir="$1"
-  pfx="$2"
-  chk="$1/$2_check.log"
-
-  # Echo the following information to gauge build health
-  echo "actualFailures:0"
-  echo "totalTests:1"
-  echo "expectedFailures:0"
+  # Go installs binaries, so create the bin dir as well
+  export GOBIN=$ZOPEN_INSTALL_DIR/bin
+  mkdir -p \$ZOPEN_INSTALL_DIR/bin
+  unset CC CXX
 }
 
-zopen_append_to_env()
+zopen_install()
 {
-  # echo envars outside of PATH, MANPATH, LIBPATH
-}
-
-zopen_append_to_setup()
-{
-  # echo commands that will run when installing via setup.sh
+  go install
 }
 
 zopen_get_version()
