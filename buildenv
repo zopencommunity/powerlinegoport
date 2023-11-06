@@ -1,8 +1,13 @@
-export ZOPEN_GIT_URL="https://github.com/justjanne/powerline-go.git"
-export ZOPEN_GIT_DEPS="comp_go"
-export ZOPEN_TYPE="GIT"
+# bump: powerline-go-version /POWERLINE_VERSION="(.*)"/ https://github.com/justjanne/powerline-go.git|semver:*
+POWERLINE_VERSION="1.24"
+
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_STABLE_DEPS="comp_go"
+export ZOPEN_STABLE_URL="https://github.com/justjanne/powerline-go/archive/refs/tags/v${POWERLINE_VERSION}.tar.gz"
+export ZOPEN_DEV_DEPS="comp_go"
+export ZOPEN_DEV_URL="https://github.com/justjanne/powerline-go.git"
 export ZOPEN_COMP="GO"
-export ZOPEN_NAME="powerlingo"
+export ZOPEN_NAME="powerlinego"
 
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_MAKE="go"
@@ -28,5 +33,5 @@ zopen_install()
 zopen_get_version()
 {
   # powerline-go doesn't have a version identifier, so hardcode
-  echo "1.24"
+  echo "$POWERLINE_VERSION"
 }
