@@ -2,6 +2,7 @@
 POWERLINE_VERSION="1.24"
 
 export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_CATEGORIES="shell"
 export ZOPEN_STABLE_DEPS="comp_go"
 export ZOPEN_STABLE_URL="https://github.com/justjanne/powerline-go.git"
 export ZOPEN_STABLE_TAG="v${POWERLINE_VERSION}"
