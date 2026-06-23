@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/zopencommunity/powerlinegoport/actions/workflows/codeql.yml/badge.svg)](https://github.com/zopencommunity/powerlinegoport/actions/workflows/codeql.yml)
+
 [![Automatic version updates](https://github.com/ZOSOpenTools/powerlinegoport/actions/workflows/bump.yml/badge.svg)](https://github.com/ZOSOpenTools/powerlinegoport/actions/workflows/bump.yml)
 
 # Powerlinego
